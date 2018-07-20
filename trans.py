@@ -10,11 +10,13 @@ def start_click():
 	#Размешаем поля
 	text1.place(x = 25, y = 45)
 	text2.place(x = 415, y = 45)
-	b_get.place(x = 50, y = 300)
+
 #Переносим на другое поле
-def getText():
-	text = text1.get(1.0, END)
-	text2.insert(1.0, text)
+def getText(event):
+	global text1, text2
+	t = text1.get(1.0, END)
+	text2.delete(1.0, END)
+	text2.insert(1.0, t)
 
 root=Tk()
 
@@ -44,7 +46,6 @@ canvas1 = Canvas(root, width = 800, height = 400, bg = "#FEFEF5")
 text1=Text(root, width = 40, height = 8, font = ("Harrington", "12"), wrap = WORD)
 text2=Text(root, width = 40, height = 8, font = ("Harrington", "12"), wrap = WORD)
 
-#Кнопка перевода
-b_get = Button(root, text="Перевести", command=getText)
+root.bind("<Key>", getText)
 
 root.mainloop()
